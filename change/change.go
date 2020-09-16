@@ -1,9 +1,5 @@
 package change
 
-import (
-	"fmt"
-)
-
 type bc struct {
 	BankNote float64
 	Amount   int
@@ -28,13 +24,15 @@ func initBcUnit() {
 }
 
 // Change is function to Change Money of Thai baht
-func Change(exVal float64) {
+func Change(exVal float64) []bc {
 	initBcUnit()
+	var retBC []bc
 	for _, v := range bcUnit {
 		if exVal >= v.BankNote {
 			v.Amount = int(exVal / v.BankNote)
 			exVal = exVal - float64(float64(v.Amount)*v.BankNote)
 		}
-		fmt.Printf("result of change of Bank Note %d = %d \n", int(v.BankNote), v.Amount)
+		retBC = append(retBC, v)
 	}
+	return retBC
 }
