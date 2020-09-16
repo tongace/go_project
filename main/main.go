@@ -1,13 +1,7 @@
 package main
 
-import (
-	"fmt"
-
-	"github.com/tongace/go_project/fizzbuzz"
-)
+import "github.com/tongace/go_project/change"
 
 func main() {
-	param := 3
-	v := fizzbuzz.FizzBuzz(param)
-	fmt.Printf("return value of param %d is %s", param, v)
+	change.Change(1788.75)
 }
