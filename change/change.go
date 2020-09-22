@@ -1,32 +1,33 @@
 package change
 
-type bc struct {
+// Bc :Banknote and Coin
+type Bc struct {
 	BankNote float64
 	Amount   int
 }
 
-var bcUnit []bc
+var bcUnit []Bc
 
 func initBcUnit() {
-	bcUnit = []bc{
-		bc{1000, 0},
-		bc{500, 0},
-		bc{100, 0},
-		bc{50, 0},
-		bc{20, 0},
-		bc{10, 0},
-		bc{5, 0},
-		bc{2, 0},
-		bc{1, 0},
-		bc{0.5, 0},
-		bc{0.25, 0},
+	bcUnit = []Bc{
+		Bc{1000, 0},
+		Bc{500, 0},
+		Bc{100, 0},
+		Bc{50, 0},
+		Bc{20, 0},
+		Bc{10, 0},
+		Bc{5, 0},
+		Bc{2, 0},
+		Bc{1, 0},
+		Bc{0.5, 0},
+		Bc{0.25, 0},
 	}
 }
 
 // Change is function to Change Money of Thai baht
-func Change(exVal float64) []bc {
+func Change(exVal float64) []Bc {
 	initBcUnit()
-	var retBC []bc
+	var retBC []Bc
 	for _, v := range bcUnit {
 		if exVal >= v.BankNote {
 			v.Amount = int(exVal / v.BankNote)
