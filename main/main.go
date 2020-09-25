@@ -1,14 +1,19 @@
 package main
 
 import (
-	"fmt"
-
-	"github.com/tongace/go_project/change"
+	"log"
+	"net/http"
 )
 
+func hello(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("Hello Test !!!"))
+}
 func main() {
-	bc := change.Change(1788.80)
-	for _, v := range bc {
-		fmt.Printf("result of change of Bank Note %.2f = %d \n", v.BankNote, v.Amount)
+	http.HandleFunc("/hello", hello)
+
+	log.Println("Listening on :9999...")
+	err := http.ListenAndServe(":9999", nil)
+	if err != nil {
+		log.Fatal("Error")
 	}
 }
