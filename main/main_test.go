@@ -22,4 +22,16 @@ func TestHello(t *testing.T) {
 			t.Errorf("wrong body: got %s want %s", body.String(), "Hello Test !!!")
 		}
 	})
+	t.Run("it should return Body Hello Test !!!", func(t *testing.T) {
+		req, err := http.NewRequest(http.MethodGet, "/hello", nil)
+		if err != nil {
+			t.Error(err)
+		}
+		resp := httptest.NewRecorder()
+		handler := http.HandlerFunc(hello)
+		handler.ServeHTTP(resp, req)
+		if body := resp.Body; body.String() != "Hello Test !!!" {
+			t.Errorf("wrong body: got %s want %s", body.String(), "Hello Test !!!")
+		}
+	})
 }
