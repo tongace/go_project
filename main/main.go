@@ -1,19 +1,25 @@
 package main
 
 import (
-	"log"
-	"net/http"
+	"fmt"
+	"time"
+
+	"github.com/tongace/go_project/fibonaci"
 )
 
-func hello(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Hello Test !!!"))
-}
 func main() {
-	http.HandleFunc("/hello", hello)
+	start1 := time.Now()
+	v := fibonaci.CalFibonaciWithRecursive(10)
+	elapsed1 := time.Since(start1)
+	fmt.Printf("fibonaci of recursive value of 10 is %d \n", v)
+	fmt.Printf("time eclibaced1 is %s \n", elapsed1)
 
-	log.Println("Listening on :9999...")
-	err := http.ListenAndServe(":9999", nil)
-	if err != nil {
-		log.Fatal("Error")
+	start2 := time.Now()
+	f := fibonaci.CalFibonaciWithClosure()
+	for ii := 0; ii < 10; ii++ {
+		fmt.Println(f())
 	}
+	elapsed2 := time.Since(start2)
+	fmt.Printf("fibonaci of closure value of 10 is %d \n", v)
+	fmt.Printf("time eclibaced2 is %s \n", elapsed2)
 }
