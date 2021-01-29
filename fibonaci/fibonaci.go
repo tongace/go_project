@@ -17,3 +17,14 @@ func CalFibonaciWithClosure() func() int {
 		return ret
 	}
 }
+
+//CalFibonaciWithSequence is function to calculate fibonaci value of n
+func CalFibonaciWithSequence(n int) int {
+	var n2, n1 int = 0, 1
+
+	for i := int(2); i < n; i++ {
+		n2, n1 = n1, n1+n2
+	}
+
+	return n2 + n1
+}

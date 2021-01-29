@@ -43,8 +43,23 @@ func TestWith10mustbe55(t *testing.T) {
 	}
 }
 
-func BenchmarkFibonacci(b *testing.B) {
+func BenchmarkFibonacciRecursive(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		fibonaci.CalFibonaciWithRecursive(100)
+		fibonaci.CalFibonaciWithRecursive(10)
+	}
+}
+func BenchmarkFibonacciSequence(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		fibonaci.CalFibonaciWithSequence(10)
+	}
+}
+
+func BenchmarkFibonacciClosure(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		f := fibonaci.CalFibonaciWithClosure()
+		for jj := 0; jj < 10; jj++ {
+			f()
+		}
+		fibonaci.CalFibonaciWithSequence(10)
 	}
 }
